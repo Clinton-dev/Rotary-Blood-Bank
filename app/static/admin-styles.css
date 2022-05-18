@@ -107,3 +107,8 @@ body {
   li.signout-nav a#signout {
       color: white;
   }
+
+  .req-btn {
+    background-color: #011627;
+    color: white;
+  }

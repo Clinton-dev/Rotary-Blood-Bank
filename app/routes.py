@@ -1,6 +1,16 @@
 from flask import render_template, url_for
 from app import app
 
+patient_request = [
+    {"username":"john waweru","blood":"A"},
+    {"username":"john waweru","blood":"A"},
+    {"username":"james andwer","blood":"B"},
+    {"username":"Peter waweru","blood":"A"},
+    {"username":"john waweru","blood":"B"},
+    {"username":"john waweru","blood":"AB"},
+    {"username":"john waweru","blood":"O"}
+]
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -19,4 +29,4 @@ def receiver():
 
 @app.route('/request')
 def request():
-    return render_template('request.html')
+    return render_template('request.html',requests=patient_request)
