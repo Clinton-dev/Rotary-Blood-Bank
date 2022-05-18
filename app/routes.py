@@ -15,3 +15,14 @@ def admin_home():
 def login():
     form = LoginForm()
     return render_template('login.html', title='Login', form=form)
+@app.route('/donor')
+def donor():
+    return render_template('donors.html')
+
+@app.route('/receiver')
+def receiver():
+    return render_template('receivers.html')
+
+@app.route('/request')
+def request():
+    return render_template('request.html')
