@@ -1,10 +1,6 @@
 from flask import render_template, url_for,redirect,flash
 from app import app
-from app.forms import RegistrationForm
-
-
-
-
+from app.forms import RegistrationForm, LoginForm
 
 patient_request = [
     {"username":"john waweru","blood":"A"},
@@ -25,6 +21,20 @@ def admin_home():
     return render_template('admin_index.html')
 
 
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == "user@gmail.com" and form.password.data == "password":
+            flash('login unsuccessful', 'danger')
+            return redirect(url_for('index'))
+    return render_template('login.html', title = 'Login', form = form)
+
+@app.route("/logout")
+def logout():
+    return redirect(url_for('home'))
+
+    
 
 @app.route('/user_register', methods=['GET', 'POST'])
 def register():
@@ -50,3 +60,7 @@ def receiver():
 @app.route('/request')
 def request():
     return render_template('request.html',requests=patient_request)
+
+@app.route('/wait')
+def wait():
+    return render_template('wait.html',requests=patient_request)
