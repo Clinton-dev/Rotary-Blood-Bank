@@ -12,9 +12,14 @@ patient_request = [
     {"username":"john waweru","blood":"O"}
 ]
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/admin_profile')
+def admin_profile():
+    return render_template('admin/admin_profile.html')
 
 @app.route('/admin')
 def admin_home():
@@ -42,12 +47,12 @@ def register():
     return render_template ("user_register.html", title='Register', form=form)
 @app.route('/donor')
 def donor():
-    return render_template('donors.html')
+    return render_template('admin/donors.html')
 
 @app.route('/receiver')
 def receiver():
-    return render_template('receivers.html')
+    return render_template('admin/receivers.html')
 
 @app.route('/request')
 def request():
-    return render_template('request.html',requests=patient_request)
+    return render_template('admin/request.html',requests=patient_request)
