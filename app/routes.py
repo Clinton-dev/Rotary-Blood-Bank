@@ -64,3 +64,9 @@ def request():
 @app.route('/wait')
 def wait():
     return render_template('wait.html',requests=patient_request)
+
+    
+
+@app.route('/landingpage')
+def landingpage():
+    return render_template('landingpage.html')
