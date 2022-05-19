@@ -26,6 +26,20 @@ def admin_home():
     return render_template('admin_index.html')
 
 
+@app.route('/adminlogin', methods=['GET','POST'])
+def adminlogin():
+    form = LoginForm()
+    
+    if form.validate_on_submit():
+        print(form.email.data)
+        print(form.password.data)
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('admin_home'))
+        else:
+            flash('Login Unsuccesfull. Please check username and password', 'danger')
+        
+    return render_template('adminlogin.html', title='admin Login', form=form)
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
