@@ -39,7 +39,16 @@ def logout():
 @app.route('/user_register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        if form.email.data == 'user@gmail.com' and form.password.data == 'password':
+            return redirect('index')
+        
+
+   
     return render_template ("user_register.html", title='Register', form=form)
+
+
+
 @app.route('/donor')
 def donor():
     return render_template('donors.html')
