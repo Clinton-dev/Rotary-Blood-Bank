@@ -16,6 +16,10 @@
       rel="stylesheet"
       href="{{url_for('static', filename='admin-styles.css')}}"
     />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/modal.css')}}"
+    />
 
     <title>Rotary Blood Bank</title>
   </head>
@@ -45,7 +49,7 @@
       />
       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3" href="#">Sign out</a>
+          <a class="nav-link px-3" href="{{url_for('logout')}}">Sign out</a>
         </div>
       </div>
     </header>
@@ -86,15 +90,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{url_for('waiting_list')}}">
                   <span data-feather="users"></span>
-                  Help desk
+                  Waiting List
                 </a>
               </li>
-              <li class="nav-item signout-nav">
-                <a class="nav-link" id="signout" href="#">
+              <li class="nav-item signout-nav" style="margin-top: 426px">
+                <a class="nav-link" id="signout" href="{{url_for('logout')}}">
                   <span data-feather="layers"></span>
-                  signout
+                  Sign out
                 </a>
               </li>
             </ul>
@@ -111,6 +115,7 @@
       </div>
     </div>
     <!-- Bootstrap Bundle with Popper -->
+    <script src="{{url_for('static', filename='js/modal.js')}}"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
