@@ -4,11 +4,11 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong">
-          <div class="card-body p-5 text-center m-auto">
-            <form class="mt-2 pb-3 w-75 bg-light" method="POST">
+          <div class="card-body p-5 text-center m-auto d-flex justify-content-center">
+            <form class="mt-2 pb-3 w-75" method="POST">
               <fieldset>
                 {{ form.hidden_tag() }}
-                <legend class="mb-4">Login</legend>
+                <legend class="mb-4">LOGIN</legend>
                 <div class="form-outline mb-4">
                   {{ form.email (class="form-control form-control-lg
                   type='email' ,form-control-lg mt-2 ", placeholder="Email") }}
@@ -32,7 +32,7 @@
                 <hr class="my-4" />
                 <div class="text-center w-75">
                   <small
-                    >Need an account?<a class="mx-2" href="">Sign up</a></small
+                    >Need an account?<a class="mx-2" href="{{ url_for('register') }}">Sign up</a></small
                   >
                 </div>
               </fieldset>
