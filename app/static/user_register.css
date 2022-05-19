@@ -1,0 +1,44 @@
+
+
+
+.form-check-label{
+ font-size: 15px;
+ padding-left: 15px;
+}
+
+.form-check-input{
+  cursor: pointer;
+}
+
+
+.vh-100{
+  background-image: url(https://www.pipestonestar.com/wp-content/uploads/2020/11/116427_Blood-Drive-1024x582-900x512-1.jpg);
+  background-size: cover;
+}
+
+#register{
+  background-color: #ff7845;
+  padding: 8px 176px;
+  border-radius: 10px;
+  color: white;
+}
+
+#register:hover{
+  background-color: #ffa17e;
+}
+
+.form-check-input{
+  cursor: pointer;
+}
+.logo{
+  font-size: 16px;
+
+}
+
+
+button.btn-register{
+background-color: #25a6ff;
+
+}
+
+
