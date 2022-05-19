@@ -12,14 +12,34 @@ patient_request = [
     {"username":"john waweru","blood":"O"}
 ]
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/admin_profile')
+def admin_profile():
+    return render_template('admin/admin_profile.html')
 
 @app.route('/admin')
 def admin_home():
     return render_template('admin_index.html')
 
+
+@app.route('/adminlogin', methods=['GET','POST'])
+def adminlogin():
+    form = LoginForm()
+    
+    if form.validate_on_submit():
+        print(form.email.data)
+        print(form.password.data)
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('admin_home'))
+        else:
+            flash('Login Unsuccesfull. Please check username and password', 'danger')
+        
+    return render_template('adminlogin.html', title='admin Login', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -51,22 +71,13 @@ def register():
 
 @app.route('/donor')
 def donor():
-    return render_template('donors.html')
+    return render_template('admin/donors.html')
 
 @app.route('/receiver')
 def receiver():
-    return render_template('receivers.html')
+    return render_template('admin/receivers.html')
 
 @app.route('/request')
 def request():
-    return render_template('request.html',requests=patient_request)
+    return render_template('admin/request.html',requests=patient_request)
 
-@app.route('/wait')
-def wait():
-    return render_template('wait.html',requests=patient_request)
-
-    
-
-@app.route('/landingpage')
-def landingpage():
-    return render_template('landingpage.html')
