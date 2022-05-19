@@ -7,22 +7,22 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong">
             <div class="card-body p-5 text-center m-auto">
-            <form class="mt-2 pb-3 w-75 bg-light" method="POST">
+            <form class="mt-2 pb-3 w-75 m-auto" method="POST">
                 <fieldset>
                         {{ form.hidden_tag() }}
-                    <legend class="mb-4">Login</legend>
+                    <legend class="mb-4">LOGIN</legend>
                     <div class="form-outline mb-4">
-                        {{ form.email (class="form-control form-control-lg type='email' ,form-control-lg mt-2 ", placeholder="Email") }}
+                        {{ form.email (class="form-control form-control-lg bg-light type='email' form-control-lg mt-2 ", placeholder="Email") }}
                     </div>
                     <div class="form-outline mb-4">
-                        {{ form.password (class="form-control form-control-lg type='password' form-control-lg mt-2 ", placeholder="Password") }}
+                        {{ form.password (class="form-control form-control-lg bg-light type='password' form-control-lg mt-2 ", placeholder="Password") }}
                     </div>
                     <div class="form-check d-flex justify-content-start mb-4">
                         {{ form.remember (class="form-check-input mx-2 ", placeholder="Remeber Me") }}
                         {{ form.remember.label(class="form-check-label") }}
                     </div>
                     <div class = "form-group mb-3">
-                        {{ form.submit(class = "btn btn-outline-info px-4") }}
+                        {{ form.submit(class = "btn btn-outline-info px-5") }}
                     </div>
                     <small class="">
                         <a href="#">Forgot Password?</a>
