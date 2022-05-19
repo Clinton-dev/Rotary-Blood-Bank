@@ -37,3 +37,7 @@ def receiver():
 @app.route('/request')
 def request():
     return render_template('request.html',requests=patient_request)
+
+@app.route('/wait')
+def wait():
+    return render_template('wait.html',requests=patient_request)
