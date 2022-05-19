@@ -2,11 +2,11 @@ from flask import render_template, url_for,redirect,flash
 from app import app, db
 from app.forms import RegistrationForm, LoginForm
 from app.models import Receiver, Donor, Waiting, User
-
+from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def landing_page():
+    return render_template('landingpage.html')
 
 @app.route('/admin_profile')
 def admin_profile():
@@ -38,7 +38,7 @@ def login():
     if form.validate_on_submit():
         if form.email.data == "user@gmail.com" and form.password.data == "password":
             flash('login unsuccessful', 'danger')
-            return redirect(url_for('index'))
+            return redirect(url_for('landing_page'))
     return render_template('login.html', title = 'Login', form = form)
 
 @app.route("/logout")
@@ -51,8 +51,15 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        if form.email.data == 'user@gmail.com' and form.password.data == 'password':
-            return redirect('index')
+        print('valid')
+        print(form.username.data)
+        blood_type = form.bloodgroup.data.upper()
+        user = User(username=form.username.data, blood_type=blood_type, age=form.age.data,
+                    email=form.email.data, conditions=form.conditions.data, password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('created account', 'primary')
+        return redirect(url_for('landing_page'))
         
 
    
