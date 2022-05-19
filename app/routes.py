@@ -1,6 +1,10 @@
-from flask import render_template, url_for,redirect
+from flask import render_template, url_for,redirect,flash
 from app import app
 from forms import RegistrationForm
+
+
+
+
 
 patient_request = [
     {"username":"john waweru","blood":"A"},
@@ -25,7 +29,16 @@ def admin_home():
 @app.route('/user_register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        if form.email.data == 'user@gmail.com' and form.password.data == 'password':
+            return redirect('index')
+        
+
+   
     return render_template ("user_register.html", title='Register', form=form)
+
+
+
 @app.route('/donor')
 def donor():
     return render_template('donors.html')
