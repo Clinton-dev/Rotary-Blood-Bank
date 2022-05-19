@@ -20,13 +20,7 @@ class RegistrationForm(FlaskForm):
   submit = SubmitField('Submit')
 
 
-  #validation of mail and username
-  def validate_username(self,username):
-
-    user = User.query.filter_by(username=username.data).frst()
-    if user:
-      raise ValidationError('Email already exists')
-
+  #validation of e-mail
   
   def validate_email(self,email):
 

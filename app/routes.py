@@ -1,16 +1,7 @@
 from flask import render_template, url_for,redirect,flash
-from app import app
+from app import app, db
 from app.forms import RegistrationForm, LoginForm
-
-patient_request = [
-    {"username":"john waweru","blood":"A"},
-    {"username":"john waweru","blood":"A"},
-    {"username":"james andwer","blood":"B"},
-    {"username":"Peter waweru","blood":"A"},
-    {"username":"john waweru","blood":"B"},
-    {"username":"john waweru","blood":"AB"},
-    {"username":"john waweru","blood":"O"}
-]
+from app.models import Receiver, Donor, Waiting, User
 
 
 @app.route('/')
@@ -71,13 +62,60 @@ def register():
 
 @app.route('/donor')
 def donor():
-    return render_template('admin/donors.html')
+    donors = Donor.query.all()
+    return render_template('admin/donors.html', donors= donors)
 
 @app.route('/receiver')
 def receiver():
-    return render_template('admin/receivers.html')
+    receivers = Receiver.query.all()
+    return render_template('admin/receivers.html', receivers=receivers)
 
 @app.route('/request')
 def request():
-    return render_template('admin/request.html',requests=patient_request)
+    donors = Donor.query.all()
+    receivers = Receiver.query.all()
+ 
+    found = []
 
+    for r in receivers:
+        f = True
+        if f :
+            for d in donors:
+                if r.blood_type == d.blood_type:
+                    found.append([r, d])
+                    f = False
+                    break
+        if f :
+            for o in range(0, len(donors)):
+                if donors[o].blood_type == 'O-':
+                    found.append([r, donors[o]])
+                    break
+    return render_template('admin/request.html', found=found)
+
+
+@app.route("/connect/<rec_id>/<don_id>", methods=['POST'])
+def connect(rec_id, don_id):
+    receiver = Receiver.query.get_or_404(rec_id)
+    donor = Donor.query.get_or_404(don_id)
+    waiting = Waiting(username=receiver.username, age=receiver.age, conditions=receiver.conditions, 
+                      blood_type=receiver.blood_type, matched_blood=donor.blood_type, 
+                      matched_username=donor.username, email=receiver.email)
+    db.session.add(waiting)
+    db.session.commit()
+    
+    db.session.delete(receiver)
+    db.session.delete(donor)
+    db.session.commit()
+    return redirect(url_for('request'))
+
+@app.route('/waiting_list')
+def waiting_list():
+    waitings = Waiting.query.all()
+    return render_template('admin/wait.html', waitings=waitings)
+
+@app.route("/done/<done_id>/", methods=['POST'])
+def done(done_id):
+    waiting = Waiting.query.get_or_404(done_id)
+    db.session.delete(waiting)
+    db.session.commit()
+    return redirect(url_for('waiting_list'))
