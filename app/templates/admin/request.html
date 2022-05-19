@@ -1,0 +1,64 @@
+{% extends "admin_layout.html"%} {% block content%}
+<h1>Pending request</h1>
+<div class="row row-cols-2 g-4 justify-content-evenly">
+  {% for match in found%}
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-header">Found match</div>
+      <div class="card-body">
+        <div class="first_match">
+          <h5 class="card-title">{{match[0].username | capitalize}}</h5>
+          <p class="card-text">{{match[0].blood_type}}</p>
+        </div>
+        <div class="second_match">
+          <h5 class="card-title">{{match[1].username | capitalize}}</h5>
+          <p class="card-text">{{match[1].blood_type}}</p>
+        </div>
+        <button class="open btn btn-outline-primary">Connect</button>
+      </div>
+      <!-- Modal -->
+      <div class="modal-bg">
+        <div class="modal-cont">
+          <h5 class="modal-title">Match Found</h5>
+          <div class="model-cont">
+            <div class="model-detail">
+              <h6 style="text-decoration: underline">RECEIVER</h6>
+              <span>{{match[0].username | capitalize}}</span>
+              <span style="margin-left: 10px">{{match[0].blood_type}}</span>
+              <p style="margin-top: 9px; font-size: 20px">
+                {{match[0].conditions}}
+              </p>
+            </div>
+            <div class="model-detail">
+              <h6 style="text-decoration: underline">DONOR</h6>
+              <span>{{match[1].username | capitalize}}</span>
+              <span style="margin-left: 10px">{{match[1].blood_type}}</span>
+              <p style="margin-top: 9px; font-size: 20px">
+                {{match[1].conditions}}
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary modal-close2">Close</button>
+            <form
+              action="{{url_for('connect', rec_id=match[0].id, don_id=match[1].id)}}"
+              method="post"
+            >
+              <input
+                class="btn btn-outline-primary"
+                type="submit"
+                value="Connect"
+              />
+            </form>
+          </div>
+
+          <span class="modal-close">X</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+
+  {% endfor %}
+</div>
+{% endblock content%}

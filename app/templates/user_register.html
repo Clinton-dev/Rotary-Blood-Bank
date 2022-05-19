@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- icon cdn  -->
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+
+  <!-- bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+
+  <!-- CSS  -->
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename = 'user_register.css')}}"
+  />
+  <body>
+    <div class="vh-100">
+      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div
+            class="row d-flex justify-content-center align-items-center h-100"
+          >
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px">
+                <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center mb-5">
+                    Create an account
+                  </h2>
+
+                  <form action="" method="POST">
+                    {{form.hidden_tag()}}
+
+                    <div class="form-outline mb-4">
+                      {{ form.username.label(class="form-control-label") }} {{
+                      form.username(class="form-control form-control-lg") }}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      {{ form.email.label(class="form-control-label") }} {{
+                      form.email(class="form-control form-control-lg") }}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      {{ form.age.label(class="form-control-label") }} {{
+                      form.age(class="form-control form-control-lg") }}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      {{ form.bloodgroup.label(class="form-control-label") }} {{
+                      form.bloodgroup(class="form-control form-control-lg") }}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      {{ form.conditions.label(class="form-control-label") }} {{
+                      form.conditions(class="form-control form-control-lg")}}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      {{ form.password.label(class="form-control-label") }} {{
+                      form.password(class="form-control form-control-lg") }}
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      {{ form.confirm_password.label(class="form-control-label")
+                      }} {{ form.confirm_password(class="form-control
+                      form-control-lg") }}
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                      {{ form.submit(class="btn btn-outline-primary") }}
+                    </div>
+
+                    <p class="text-center text-muted mt-5 mb-0">
+                      Already have an account?
+                      <a href="login.html" class="fw-bold text-body"
+                        ><u>Login here</u></a
+                      >
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

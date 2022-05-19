@@ -1,0 +1,26 @@
+.vh-100{
+    background-image: url(https://i.ndtvimg.com/i/2017-06/blood-donation-world-blood-donor-day-2017_650x400_81497416895.jpg);
+    background-size: cover;
+}
+.myfooter{
+    background-color: black;
+    padding: 50px;
+}
+.secondhr{
+    color: red;
+}
+li{
+    list-style: none;
+    margin-top: 5px;
+    
+}
+li a{
+    text-decoration: none;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+i{
+    color: red;
+}

@@ -1,0 +1,25 @@
+{% extends "admin_layout.html"%} {% block content%}
+<h1 class="mb-4">List of receivers</h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Blood Type</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in receivers %}
+      <tr>
+        <td>{{d.username| capitalize}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.blood_type}}</td>
+        <td>{{d.date_requested.strftime("%d, %b %Y")}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content%}

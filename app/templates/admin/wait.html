@@ -1,0 +1,35 @@
+{% extends "admin_layout.html"%} {% block content%}
+<h1 class="mb-4">List of Waitings</h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Blood Type</th>
+        <th>Match Blood</th>
+        <th>From</th>
+        <th>Date</th>
+        <th>Done</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in waitings %}
+      <tr>
+        <td>{{d.username| capitalize}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.blood_type}}</td>
+        <td>{{d.matched_blood}}</td>
+        <td>{{d.matched_username| capitalize}}</td>
+        <td>{{d.date_requested.strftime("%d, %b %Y")}}</td>
+        <td>
+          <form action="{{url_for('done', done_id=d.id)}}" method="post">
+            <input class="btn btn-outline-primary" type="submit" value="Done" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content%}

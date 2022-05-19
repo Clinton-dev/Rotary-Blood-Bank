@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section mt-5 px-3 bg-light">
+      <div class="media">
+        <div class="media-body">
+            <legend>My Account</legend>
+            <img class="rounded-circle account-img" src="{{ image_path }}">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+        </div>
+        <form class="mt-2 pb-3 w-75 " method="POST" enctype="multipart/form-data">
+            <fieldset class = "form-group">
+                {{ form.hidden_tag() }}
+                <div class = "form-group">
+                    {% if form.username.errors %} 
+                        {{ form.username(class= "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username (class="form-control form-control-lg ", placeholder="Username") }}
+                    {% endif %}
+                </div>
+                <div class = "form-group">
+                    {% if form.email.errors %} 
+                        {{ form.email(class= "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email (class="form-control form-control-lg mt-2 ", placeholder="Email") }}
+                    {% endif %}
+                </div>
+                <div class = "form-group">
+                    {{ form.picture.label (class="mt-3") }}
+                    {{ form.picture(class="mt-3 mx-2 form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class = "form-group">
+                    {{ form.submit(class = "btn btn-outline-info mt-3 px-4") }}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

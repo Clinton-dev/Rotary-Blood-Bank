@@ -1,0 +1,10 @@
+{% extends "admin_layout.html"%} {% block content%}
+<h1>index page</h1>
+{% endblock content%}
+<form action="{{url_for('receive_data', id=current_user.id)}}" method="post">
+  <select style="padding: 10px; border-radius: 10px" name="choice">
+    <option value="receiver">Receive</option>
+    <option value="donate">Donate</option>
+  </select>
+  <input class="btn btn-outline-primary" type="submit" value="Submit" />
+</form>
