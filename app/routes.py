@@ -40,6 +40,7 @@ def adminlogin():
             flash('Login Unsuccesfull. Please check username and password', 'danger')
         
     return render_template('adminlogin.html', title='admin Login', form=form)
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
