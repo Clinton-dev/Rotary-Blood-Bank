@@ -112,3 +112,18 @@ body {
     border: 1px solid rgb(168, 158, 158);
     border-radius: 10px;
   }
+
+  .logbody {
+    background-image: url(https://media.istockphoto.com/photos/hospital-staff-listening-to-administrator-in-boardroom-meeting-picture-id1320789671?b=1&k=20&m=1320789671&s=170667a&w=0&h=zZvmkcy8Le1TcoeKuAPPOtI-3n4R_02kD7TThEj2d1I=);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .adminlogin{
+    background-color: #fff;
+    width: 700px;
+  }
+
+  .signup-admin{
+    width: 700px;
+    margin: 0 auto;
+  }
