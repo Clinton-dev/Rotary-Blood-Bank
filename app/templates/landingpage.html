@@ -15,6 +15,7 @@
 
   <!-- CSS  -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'landingpage.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/modal.css')}}">
 
 </head>
 
@@ -39,17 +40,6 @@
                       <img
                         src="https://template79832.motopreview.com/mt-demo/79800/79832/mt-content/uploads/2019/04/mt-1802-logo.png"
                         alt="RotaryBloodgroup">  <span class="span1">ROTARY BLOOD GROUP</span> 
-                    </div>
-
-                  
-                    
-                  
-                    <div class="col-md-4 mt-5">
-                      <a href=""><button class="filter">DONATE</button></a>
-                    </div>
-
-                    <div class="col-md-4 mt-5">
-                      <a href=""><button class="filter">RECIVE</button></a>
                     </div>
 
 
@@ -80,19 +70,29 @@
             <a href="">
               <li>About</li>
             </a>
-            <a href="">
-              <li>Register</li>
-            </a>
-            <a href="">
-              <li>Login</li>
-            </a>
-            <a href="">
-              <li>Services</li>
+            
+            <a href="{{url_for('admin_profile')}}">
+              <li>Admin</li>
             </a>
             <a href="">
               <li>Support Us</li>
-
             </a>
+            {% if current_user.is_authenticated %}
+            
+              <button class="open btn btn-outline-secondary" style="margin: 15px 20px 10px 0;">Donate / Receive</button>
+    
+            
+            <a href="{{url_for('logout')}}">
+              <li>Logout</li>
+            </a>
+            {% else %}
+            <a href="{{url_for('register')}}">
+              <li>Register</li>
+            </a>
+            <a href="{{url_for('login')}}">
+              <li>Login</li>
+            </a>
+            {% endif %}
 
             
           
@@ -104,6 +104,51 @@
 
     </div>
 
+        <!-- Modal -->
+      <div class="modal-bg">
+        <div class="modal-cont">
+          <h3 class="modal-title" style="margin-left: 250px;">Donate / Receive</h3>
+          <div class="model-cont">
+            <div class="model-detail">
+              
+              <span>{{current_user.username}}</span>
+
+            <form method="POST" action="{{url_for('receive_data', id=current_user.id)}}">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4 text-center text-bold text-weight-bold">
+        Make A Choice
+      </legend>
+
+      <div class="form-group">
+        {{ form.choice.label(class="form-control-label") }} {% if
+        form.choice.errors %} {{ form.choice(class="form-control form-control-lg
+        is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.choice.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.choice(class="form-control form-control-lg") }} {%
+        endif %}
+      </div>
+
+    </fieldset>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-outline-primary") }}
+    </div>
+            </form>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary modal-close2">Close</button>
+            
+          </div>
+
+          <span class="modal-close">X</span>
+        </div>
+      </div>
 
   </section>
   <!-- MAiN BODYSTARTS -->
@@ -294,7 +339,7 @@
 
 
 
-
+<script src="{{url_for('static', filename='js/modal.js')}}"></script>
 </body>
 
 </html>

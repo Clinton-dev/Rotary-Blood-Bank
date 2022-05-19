@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,SubmitField, BooleanField,TextAreaField, IntegerField
+from wtforms import StringField,PasswordField,SubmitField, BooleanField,TextAreaField, IntegerField, SelectField
 from wtforms.validators import DataRequired,Length,Email,EqualTo, ValidationError
 
 
@@ -17,6 +17,10 @@ class RegistrationForm(FlaskForm):
   conditions = TextAreaField('Pre-existing conditions', validators=[DataRequired()])
   password = PasswordField('Password', validators=[DataRequired()])
   confirm_password = PasswordField('Re-Enter Password', validators=[DataRequired(),EqualTo('password')])
+  submit = SubmitField('Submit')
+  
+class ReDO (FlaskForm):
+  choice = SelectField('Choice',choices=[('Donate','Donate'),('Receive','Receive')])
   submit = SubmitField('Submit')
 
 

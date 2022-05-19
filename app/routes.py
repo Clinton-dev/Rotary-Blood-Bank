@@ -1,12 +1,14 @@
-from flask import render_template, url_for,redirect,flash
+from flask import render_template, url_for,redirect,flash, request
 from app import app, db
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationForm, LoginForm, ReDO
 from app.models import Receiver, Donor, Waiting, User
 from flask_login import login_user, current_user, logout_user, login_required
+from datetime import datetime
 
 @app.route('/')
 def landing_page():
-    return render_template('landingpage.html')
+    form = ReDO()
+    return render_template('landingpage.html', form=form)
 
 @app.route('/admin_profile')
 def admin_profile():
@@ -36,14 +38,22 @@ def adminlogin():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == "user@gmail.com" and form.password.data == "password":
-            flash('login unsuccessful', 'danger')
-            return redirect(url_for('landing_page'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and user.password == form.password.data:
+            login_user(user)
+            flash(f'{user.username}, You have been logged in!', 'secondary')
+            if user.admin == 'no':
+                return redirect(url_for('landing_page'))
+            else:
+                return redirect(url_for('admin_profile'))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title = 'Login', form = form)
 
 @app.route("/logout")
 def logout():
-    return redirect(url_for('home'))
+    logout_user()
+    return redirect(url_for('landing_page'))
 
     
 
@@ -64,6 +74,26 @@ def register():
 
    
     return render_template ("user_register.html", title='Register', form=form)
+
+@app.route("/receive_data/<id>", methods=['POST'])
+def receive_data(id):
+    user = User.query.get(id)
+    form = ReDO()
+    choice = form.choice.data
+    print(choice)
+    print(id)
+    if choice == 'Receive':
+        rec = Receiver(username=user.username, conditions=user.conditions, blood_type=user.blood_type, email=user.email, age=user.age, date_requested=datetime.now())
+        db.session.add(rec)
+        db.session.commit()
+        
+    elif choice == 'Donate':
+        don = Donor(username=user.username, conditions=user.conditions, blood_type=user.blood_type, email=user.email, age=user.age, date_requested=datetime.now())
+        db.session.add(don)
+        db.session.commit()
+        
+    
+    return redirect(url_for('landing_page'))
 
 
 
