@@ -81,3 +81,8 @@ def receiver():
 def request():
     return render_template('admin/request.html',requests=patient_request)
 
+
+@app.route('/landingpage')
+def landingpage():
+    return render_template('landingpage.html')
+
