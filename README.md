@@ -48,10 +48,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 ### Author's Information
-[Clinton-dev](https://github.com/Clinton-dev)
-[Hussein-omar-osman](https://github.com/Hussein-omar-osman)
-[Monicah maina](https://github.com/Moni-que)
-[Blaisehala](https://github.com/Blaisehala)
+[Clinton-dev](https://github.com/Clinton-dev),
+[Hussein-omar-osman](https://github.com/Hussein-omar-osman),
+[Monicah maina](https://github.com/Moni-que),
+[Blaisehala](https://github.com/Blaisehala),
 [David Kahumbi](https://github.com/Kahumbi)
 
 
