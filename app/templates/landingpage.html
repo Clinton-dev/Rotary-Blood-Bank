@@ -39,7 +39,7 @@
                     <div class="col-md-4 mt-3">
                       <img
                         src="https://template79832.motopreview.com/mt-demo/79800/79832/mt-content/uploads/2019/04/mt-1802-logo.png"
-                        alt="RotaryBloodgroup">  <span class="span1">ROTARY BLOOD GROUP</span> 
+                        alt="RotaryBloodgroup">  <span class="span1">ROTARY BLOOD GROUP</span>
                     </div>
 
 
@@ -70,18 +70,15 @@
             <a href="">
               <li>About</li>
             </a>
-            
-            <a href="{{url_for('admin_profile')}}">
-              <li>Admin</li>
-            </a>
+
             <a href="">
               <li>Support Us</li>
             </a>
             {% if current_user.is_authenticated %}
-            
+
               <button class="open btn btn-outline-secondary" style="margin: 15px 20px 10px 0;">Donate / Receive</button>
-    
-            
+
+
             <a href="{{url_for('logout')}}">
               <li>Logout</li>
             </a>
@@ -94,8 +91,8 @@
             </a>
             {% endif %}
 
-            
-          
+
+
           </ul>
         </div>
 
@@ -110,7 +107,7 @@
           <h3 class="modal-title" style="margin-left: 250px;">Donate / Receive</h3>
           <div class="model-cont">
             <div class="model-detail">
-              
+
               <span>{{current_user.username}}</span>
 
             <form method="POST" action="{{url_for('receive_data', id=current_user.id)}}">
@@ -139,11 +136,11 @@
     </div>
             </form>
             </div>
-            
+
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary modal-close2">Close</button>
-            
+
           </div>
 
           <span class="modal-close">X</span>
@@ -279,7 +276,7 @@
         <div class="mt-5 align-items-center w-20">
           <hr class="hr1">
           <h1 class="for-you4">Become a Blood Donor</h1>
-          
+
           <p class="for-you5">All types of blood are needed to help patients</p><br><br><br>
           <a href=""><button class="filter">Schedule an Appointment</button></a>
         </div>
@@ -335,7 +332,7 @@
 </div>
 
 
-  
+
 
 
 
