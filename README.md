@@ -8,16 +8,16 @@
 * Authors Info
 
 ### Description
-A personal blogging website where you can create and share your opinions and other users can read and comment on them. Additionally, you can random quotes to inspire yourself.
+A web app that creates a database for blood groups where users in need of a specific blood group can register their details i.e phone number,first name,last name and age then log in to a system where the doctor admins can screen the blood and link the people in need of the specified blood group to correspondent donors. Give BLOOD save LIVES..
 
 
 The contents of the website are:
-1. User can sign in to the blog.
-2. User can view blog post on the site.
-3. User can create,update and delete their blog post.
-4. User can see recent blog post.
-5. User can see random quote.
-6. User can comment on a blog post.
+1. User can sign in and register to the application.
+2. User can can choose to donate blood.
+3. User can can choose to receive blood.
+4. Admin can sign in to dashboard.
+5. Admin can see list of receivers and donors.
+6. Admin can receive list of pending blood request.
 
 
 ### Technology Used
